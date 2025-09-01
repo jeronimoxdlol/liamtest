@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xirox Oficial</title>
+
+  <!-- Favicon personalizado -->
+  <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/8b/a7/ce/8ba7cee752f0009e3924b1edfaed5218.jpg" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.pinimg.com/originals/59/a0/eb/59a0ebdb1e36d2376ff5ef3b12da588d.gif') no-repeat center center/cover;
+      filter: blur(10px) brightness(0.5);
+      z-index: -1;
+    }
+
+    .overlay {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      color: white;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      font-size: 2rem;
+      backdrop-filter: blur(5px);
+      cursor: pointer;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .intro.fadeOut {
+      animation: fadeOut 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      background: linear-gradient(270deg, #ff0047, #ff7300, #fffb00, #48ff00, #00ffd5, #0047ff, #7300ff, #ff00f7, #ff0047);
+      background-size: 1800% 1800%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 16px 24px;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 90%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .card img.profile {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+    }
+
+    .card .text {
+      text-align: left;
+    }
+
+    .card .text strong {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 1rem;
+    }
+
+    .badge-icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+
+    .badge-icon-large {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    .icons {
+      font-size: 2rem;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .icons a {
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .views {
+      font-size: 1rem;
+      margin-top: 10px;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    }
+
+    .views .eye-icon {
+      width: 18px;
+      height: auto;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
+      object-fit: contain;
+    }
+
+    .music-player {
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 300px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="background"></div>
+
+  <div class="intro" id="intro" onclick="enterSite()">Click para entrar</div>
+
+  <div class="overlay" id="mainContent">
+    <h1>xirox oficial.</h1>
+    <div class="subtitle">Developer...</div>
+
+    <div class="card">
+      <img class="profile" src="https://i.pinimg.com/736x/6d/3d/63/6d3d639a7560488271e71fae742c8e7d.jpg" alt="Perfil" />
+      <div class="text">
+        <strong>xxqzz. 🎧 
+          <img src="https://cdn3.emoji.gg/emojis/8995-staff-icon.png" alt="Staff" class="badge-icon" />
+          <img src="https://emoji.discadia.com/emojis/b5c979ce-a07b-434b-94a4-5c7ccca64b6f.PNG" alt="Badge 2" class="badge-icon" />
+          <img src="https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png" alt="Badge 3" class="badge-icon-large" />
+        </strong>
+        Listening to <em>FREE G.</em><br />
+        <small>by: Sdot Go, SweepersENT.</small>
+      </div>
+    </div>
+
+    <div class="icons">
+      <a href="https://www.tiktok.com/@xiroxoficial" target="_blank" title="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://liamdevinfo.carrd.co/" target="_blank" title="Sitio web">
+        <i class="fas fa-globe"></i>
+      </a>
+    </div>
+
+    <div class="views">
+      <img src="https://cdn-icons-png.flaticon.com/512/33/33783.png" alt="Ojo" class="eye-icon" />
+      12K vistas
+    </div>
+
+    <iframe class="music-player"
+      src="https://open.spotify.com/embed/track/5eIun7JRnOMT8HV8TW7N6L?utm_source=generator&theme=0"
+      height="80"
+      frameborder="0"
+      allowtransparency="true"
+      allow="encrypted-media"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <script>
+    function enterSite() {
+      const intro = document.getElementById('intro');
+      intro.classList.add('fadeOut');
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.getElementById('mainContent').style.display = 'flex';
+      }, 500); // Cambiado a 500 ms para salida más rápida
+    }
+  </script>
+</body>
+</html>
