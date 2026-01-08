@@ -1,255 +1,409 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Xirox Oficial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xndev - Portafolio Profesional</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --blanco: #ffffff;
+            --neon: #00f7ff;
+            --gris: #121212;
+            --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <!-- Favicon personalizado -->
-  <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/8b/a7/ce/8ba7cee752f0009e3924b1edfaed5218.jpg" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+        body {
+            font-family: var(--fuente);
+            background-color: var(--negro);
+            color: var(--blanco);
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    html, body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
 
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.pinimg.com/originals/59/a0/eb/59a0ebdb1e36d2376ff5ef3b12da588d.gif') no-repeat center center/cover;
-      filter: blur(10px) brightness(0.5);
-      z-index: -1;
-    }
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
 
-    .overlay {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      text-align: center;
-      color: white;
-      gap: 20px;
-      padding: 20px;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    .intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-      font-size: 2rem;
-      backdrop-filter: blur(5px);
-      cursor: pointer;
-      animation: fadeIn 1s ease forwards;
-    }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--blanco);
+            text-decoration: none;
+            border-bottom: 2px solid var(--blanco);
+            padding-bottom: 3px;
+        }
 
-    .intro.fadeOut {
-      animation: fadeOut 0.5s ease forwards;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+        .nav-links li {
+            margin-left: 2rem;
+        }
 
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
-      background: linear-gradient(270deg, #ff0047, #ff7300, #fffb00, #48ff00, #00ffd5, #0047ff, #7300ff, #ff00f7, #ff0047);
-      background-size: 1800% 1800%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-      animation: gradientMove 10s ease infinite;
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--blanco);
+            transition: width 0.3s;
+        }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .nav-links a:hover {
+            color: var(--blanco);
+            opacity: 0.8;
+        }
 
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 16px 24px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      max-width: 90%;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: var(--blanco);
+            font-size: 1.5rem;
+        }
 
-    .card img.profile {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid white;
-    }
+        .section {
+            padding: 8rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .card .text {
-      text-align: left;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--blanco);
+            position: relative;
+        }
 
-    .card .text strong {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 1rem;
-    }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--blanco);
+            margin: 0.8rem auto;
+        }
 
-    .badge-icon {
-      width: 16px;
-      height: 16px;
-      vertical-align: middle;
-    }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background-color: transparent;
+            color: var(--blanco);
+        }
 
-    .badge-icon-large {
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-    }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--blanco);
+            line-height: 1.2;
+        }
 
-    .icons {
-      font-size: 2rem;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: center;
-    }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--blanco);
+            opacity: 0.9;
+        }
 
-    .icons a {
-      color: white;
-      text-decoration: none;
-      transition: transform 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--blanco);
+            border: 1px solid var(--blanco);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
 
-    .icons a:hover {
-      transform: scale(1.2);
-    }
+        .btn:hover {
+            background-color: var(--blanco);
+            color: var(--negro);
+        }
 
-    .views {
-      font-size: 1rem;
-      margin-top: 10px;
-      opacity: 0.85;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-weight: 600;
-      color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
-    }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-    .views .eye-icon {
-      width: 18px;
-      height: auto;
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.8));
-      object-fit: contain;
-    }
+        .card {
+            background: rgba(18, 18, 18, 0.9);
+            padding: 2rem;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    .music-player {
-      border-radius: 12px;
-      margin-top: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      width: 90%;
-      max-width: 300px;
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            color: var(--blanco);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--blanco);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: var(--negro);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            transition: color 0.3s;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--blanco);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            color: var(--blanco);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--negro);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="background"></div>
+    <div id="particles-js"></div>
 
-  <div class="intro" id="intro" onclick="enterSite()">Click para entrar</div>
+    <header>
+        <nav>
+            <a href="#" class="logo">xndev</a>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <div class="overlay" id="mainContent">
-    <h1>xirox oficial.</h1>
-    <div class="subtitle">Developer...</div>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>xndev (Liam)</h1>
+            <p>Especialista en administración de servidores, automatización y desarrollo de bots para famosos.</p>
+            <a href="servicios.html" class="btn">Ver Servicios</a>
+        </div>
+    </section>
 
-    <div class="card">
-      <img class="profile" src="https://i.pinimg.com/736x/6d/3d/63/6d3d639a7560488271e71fae742c8e7d.jpg" alt="Perfil" />
-      <div class="text">
-        <strong>xxqzz. 🎧 
-          <img src="https://cdn3.emoji.gg/emojis/8995-staff-icon.png" alt="Staff" class="badge-icon" />
-          <img src="https://emoji.discadia.com/emojis/b5c979ce-a07b-434b-94a4-5c7ccca64b6f.PNG" alt="Badge 2" class="badge-icon" />
-          <img src="https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png" alt="Badge 3" class="badge-icon-large" />
-        </strong>
-        Listening to <em>FREE G.</em><br />
-        <small>by: Sdot Go, SweepersENT.</small>
-      </div>
-    </div>
+    <section id="proyectos" class="section">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Bot de Atención 24/7</h3>
+                <p>Implementación de un bot con IA para atención al cliente.</p>
+            </div>
+            <div class="card">
+                <h3>Bot IA</h3>
+                <p>Nuestro equipo crea Bots de discord IA, Que responden como chat-gpt, usando api de open-router.</p>
+            </div>
+            <div class="card">
+                <h3>Sistema de Monitoreo</h3>
+                <p>Desarrollo de dashboard personalizado para monitoreo en tiempo real de servidores y redes.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="icons">
-      <a href="https://www.tiktok.com/@xiroxoficial" target="_blank" title="TikTok">
-        <i class="fab fa-tiktok"></i>
-      </a>
-      <a href="https://liamdevinfo.carrd.co/" target="_blank" title="Sitio web">
-        <i class="fas fa-globe"></i>
-      </a>
-    </div>
+    <section id="equipo" class="section">
+        <h2 class="section-title">Nuestro Equipo</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Desarrollador de Bots</h3>
+                <p>Experto en Python, NLP y APIs, con proyectos implementados en sectores bancario y retail.</p>
+            </div>
+            <div class="card">
+                <h3>Analista de Datos</h3>
+                <p>Profesional en análisis de métricas y optimización de procesos, con enfoque en resultados medibles.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="views">
-      <img src="https://cdn-icons-png.flaticon.com/512/33/33783.png" alt="Ojo" class="eye-icon" />
-      12K vistas
-    </div>
+    <footer id="contacto">
+        <div class="footer-links">
+            <a href="privacy.html">Política de Privacidad</a>
+            <a href="terms.html">Términos de Servicio</a>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+        </div>
+        <p class="copyright">© 2026 xndev. Todos los derechos reservados.</p>
+    </footer>
 
-    <iframe class="music-player"
-      src="https://open.spotify.com/embed/track/5eIun7JRnOMT8HV8TW7N6L?utm_source=generator&theme=0"
-      height="80"
-      frameborder="0"
-      allowtransparency="true"
-      allow="encrypted-media"
-      loading="lazy">
-    </iframe>
-  </div>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
 
-  <script>
-    function enterSite() {
-      const intro = document.getElementById('intro');
-      intro.classList.add('fadeOut');
-      setTimeout(() => {
-        intro.style.display = 'none';
-        document.getElementById('mainContent').style.display = 'flex';
-      }, 500); // Cambiado a 500 ms para salida más rápida
-    }
-  </script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: ["#ffffff", "#cccccc", "#aaaaaa"] },
+                shape: { type: ["circle", "edge"], stroke: { width: 0, color: "#000000" } },
+                opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1 } },
+                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1 } },
+                line_linked: {
+                    enable: true,
+                    distance: 120,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 4,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: ["grab", "repulse"] },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                    repulse: { distance: 100, duration: 0.4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
 </body>
 </html>
